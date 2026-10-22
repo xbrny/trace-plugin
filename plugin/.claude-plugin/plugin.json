@@ -1,0 +1,23 @@
+{
+  "name": "trace",
+  "displayName": "trace",
+  "version": "0.1.0",
+  "description": "Project-management workflow for trace: capture, notes, planning, tracking, capacity, risks and reports. Claude does the thinking; trace stores the records.",
+  "author": { "name": "Bani" },
+  "userConfig": {
+    "trace_url": {
+      "type": "string",
+      "title": "trace URL",
+      "description": "Where trace runs, without a trailing slash, e.g. https://trace.example.com or http://localhost:3000",
+      "required": true,
+      "default": "http://localhost:3000"
+    },
+    "trace_token": {
+      "type": "string",
+      "title": "API token",
+      "description": "Create one on trace's Account page (starts with trc_)",
+      "required": true,
+      "sensitive": true
+    }
+  }
+}

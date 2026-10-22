@@ -1,0 +1,12 @@
+{
+  "name": "trace",
+  "description": "trace: project tracking that Claude reads and writes for you",
+  "owner": { "name": "Bani" },
+  "plugins": [
+    {
+      "name": "trace",
+      "source": "./plugin",
+      "description": "Project-management workflow for trace: capture, notes, planning, tracking, capacity, risks and reports"
+    }
+  ]
+}
