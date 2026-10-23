@@ -28,7 +28,7 @@ Input: $ARGUMENTS — a project, a goal in text, a document id, or an idea.
 5. The user answers `ok`, `ok without 2`, `change 1 to 3 md`, etc. Apply edits, re-run the capacity check if estimates, dates or assignees changed, and show the table again until `ok`.
 6. On `ok`: **one** `plan_apply` call, `skill: "plan"`, a fresh `idempotency_key`:
    - `initiatives`: new ones with `tmp_id` and `baseline: true`; existing initiatives are referenced by their id in item rows.
-   - `items`: `tmp_id`, `title`, `initiative_id` (tmp_id or real id), `parent_item_id` (a parent's tmp_id for sub-items), `estimate_minutes` (not on parents), `start_date`, `due_date`, `assignee`, `status: "todo"`.
+   - `items`: `tmp_id`, `title`, `initiative_id` (tmp_id or real id), `parent_item_id` (a parent's tmp_id for sub-items), `estimate_minutes` (not on parents), `start_date`, `due_date`, `assignee`, `status: "todo"`, `tag_ids` only for tags the user asked for (`item_tag` `list` / `create` before the call).
    - `BULK_INVALID` → nothing was written; fix the listed rows and resend the whole plan.
    - Existing items joining a new initiative: after `plan_apply`, move them with `item_save` (`refs`, `initiative_id`), then `initiative_save` `baseline: true` so the baseline includes them.
 7. Reply with the created refs and the project `url`.

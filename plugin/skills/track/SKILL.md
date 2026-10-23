@@ -19,6 +19,7 @@ Input: $ARGUMENTS (or the user's message). Dictated facts are saved **directly**
    - cancelled / dropped → `item_action` `action: "cancel"`, `reason` if said
    - dates, estimate, assignee, priority → `item_save` (`ref`, `version`, fields). Estimates in minutes (man-days × `minutes_per_man_day` from `me`).
    - Same change on several items → one call with all of them (`items` / `refs`).
+   - tag / untag ("tag CPR-12 mobile") → `item_tag` `list` for the project's tag ids, then `item_save` with the full new `tag_ids`. A tag that doesn't exist yet → `item_tag` `create` first, and say so in the summary.
 3. Several facts in one message → several writes, **one** summary.
 4. Warnings:
    - "Done" on a parent with open sub-items → `PARENT_HAS_OPEN_SUBITEMS`: show which sub-items are open and ask. Resend with `confirm_open_subitems: true` only on yes.

@@ -15,7 +15,7 @@ Input: $ARGUMENTS (or the user's last message).
 2. Find the project: call `projects_search` with the name or key the user used (or the project in focus earlier in this conversation). One clear match → use it. Several or none → ask which, listing candidates. For an idea, also check `documents_search` (`kind: ["idea"]`, `q`) so you don't duplicate a recent one; mention a near-duplicate if found.
 3. Show what you will create in **one line**, e.g. `Item in CPR (backlog): "Stripe webhook retries", assignee me` and ask for OK. Include assignee, due date or estimate only if the user said them.
 4. On OK, write with `skill: "capture"` and a fresh `idempotency_key`:
-   - item → `item_save` (`project`, `title`, optional `description`, `assignee`, `due_date`, `estimate_minutes`, `status`)
+   - item → `item_save` (`project`, `title`, optional `description`, `assignee`, `due_date`, `estimate_minutes`, `status`, `tag_ids`). Tags the user named: `item_tag` `list` for their ids; a missing one → `item_tag` `create` first, shown in the one-line preview
    - project → `project_save` (`new_key`, `name`, optional `description`, `target_date`)
    - idea → `document_save` (`kind: "idea"`, `title`, optional `body`, optional `project_id`)
 5. Reply with the ref / key / title and its `url`.
