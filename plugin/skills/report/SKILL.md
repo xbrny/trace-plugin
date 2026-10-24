@@ -8,7 +8,7 @@ argument-hint: [project] [period] [audience]
 
 Input: $ARGUMENTS — project (or all), period (default: last full week, Mon–Fri, in the user's timezone), audience, and `status_report` (default) or `email`.
 
-1. `report_data` (`project`, `kind`, `from`, `to`) is the **only** source. Don't add facts it doesn't contain. It returns only published work: if the project or its items are drafts, it comes back empty by design — say so instead of reporting "no activity".
+1. `report_data` (`project`, `kind`, `from`, `to`) is the **only** source. Without a project it covers my work across projects (items assigned to me, my decisions, my risks), not every project: say so when the user asked for "all". Don't add facts it doesn't contain. It returns only published work: if the project or its items are drafts, it comes back empty by design — say so instead of reporting "no activity".
 2. Write for the audience: client → outcomes and dates, no internal names or refs unless asked; internal → refs, owners, blockers. Usual sections: Summary, Done, In progress, Blocked (with what unblocks it), Risks and decisions, Next. Note what changed since the previous report if `report_data` returns one. An email also needs a subject.
 3. Save the draft as soon as you first show it: `report` `op: "save"`, `skill: "report"`, `kind`, `title`, `body` (Markdown), `project_id`, `audience`, `period_from`, `period_to`, `email_subject` (email), `source_refs` (refs you used), `idempotency_key`. Reports always start as drafts.
 4. Each edit the user accepts in chat → `report` `op: "save"` with `id`, `version` and the changed fields.
