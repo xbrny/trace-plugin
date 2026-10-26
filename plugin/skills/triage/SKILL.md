@@ -65,7 +65,7 @@ One line each, saved on OK:
 
 - Log an issue on a client's behalf (from an email or a call): `client_issue_save` with `project`, `title`, `type`, `priority`, `description`. You become the reporter; start the description with "Reported by <name>". Show: `Log in CPR: "Checkout fails on Safari" (bug, high), reported by Ali`.
 - Invite or remove a guest: `guest` `invite` (`email`, `name` for someone new) or `remove` (`guest`). Show: `Invite Ali <ali@client.com> to CPR as a guest`. Guests see every client issue in the project, never items.
-- Add or remove a member: `member` `add` or `remove` (`member`: exact name, email or id of an existing trace member). Show: `Add Mei <mei@studio.test> to CPR as a member`. Members see everything in the project. Removing someone moves their open items to the project owner; say so in the line. The owner can't be removed. New member accounts aren't made here: the operator adds them with `user:add`.
+- Add or remove a member: `member` `add` or `remove` (`member`: exact name, email or id of an existing trace member). Show: `Add Mei <mei@studio.test> to CPR as a member`. Members see everything in the project. Removing someone moves their open items to the project owner; say so in the line. The owner can't be removed. New member accounts aren't made here: the setup skill invites them (`user` `invite`).
 
 ## Summary
 
