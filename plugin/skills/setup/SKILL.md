@@ -1,6 +1,6 @@
 ---
 name: setup
-description: Check the trace connection, show my timezone and availability, offer to fix them, suggest permission rules, and invite, deactivate or reactivate trace members. Use after installing the trace plugin, when trace tools fail to connect, when the user wants to change their timezone, work days, focus or man-day length, or says "invite Sam to trace", "deactivate Mei", "cancel Ana's invite".
+description: Check the trace connection, show my timezone and availability, offer to fix them, suggest permission rules, and invite, deactivate or reactivate trace members. Use after installing the trace plugin, when trace tools fail to connect, when the user wants to change their timezone, work days or focus, or says "invite Sam to trace", "deactivate Mei", "cancel Ana's invite".
 ---
 
 # trace setup
@@ -8,9 +8,9 @@ description: Check the trace connection, show my timezone and availability, offe
 1. Call `me`.
    - Fails with 401 / UNAUTHENTICATED → the token is wrong, expired or revoked. Tell the user to create a token on trace's Account page and re-enter it with `/plugin` → trace → Configure. Stop.
    - Fails to connect → `trace_url` is wrong or trace is down. Show the URL the plugin uses and stop.
-2. Show in one short table: name, email, timezone, work days per week, focus %, minutes per man-day (global setting), other users.
-3. Ask whether anything is wrong. Typical fixes: timezone (IANA name, e.g. `Asia/Kuala_Lumpur`), `work_days_per_week` (0–5, steps of 0.5), `focus_percent` (1–100), `minutes_per_man_day` (60–1440, shared by everyone — say so).
-4. On OK, call `settings_save` with `skill: "setup"` and the `version` values from `me`: one call for my fields (`me`), a separate one for `minutes_per_man_day` (`setting`). Echo what changed.
+2. Show in one short table: name, email, timezone, work days per week, focus %, minutes per man-day (global, set by the operator: read-only here), other users.
+3. Ask whether anything is wrong. Typical fixes: timezone (IANA name, e.g. `Asia/Kuala_Lumpur`), `work_days_per_week` (0–5, steps of 0.5), `focus_percent` (1–100). A wrong man-day length is an operator fix, not a setup change.
+4. On OK, call `settings_save` with `skill: "setup"` and my `version` from `me`. Echo what changed.
 5. Member changes, when asked (not project guests or project members: those are the triage skill). Use `user` with `skill: "setup"`; `member` is the exact name, email or id. Show one line and save on OK:
    - `invite` (email + name): `Invite Sam <sam@example.com> to trace`. Inviting someone who hasn't signed in yet resends the email. If `invite_email` is `failed`, say so; they can still sign in from the sign-in page.
    - `cancel`: only for someone who never signed in. `USER_ACTIVE` → offer deactivate instead.
