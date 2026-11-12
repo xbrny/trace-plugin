@@ -1,6 +1,6 @@
 ---
 name: note
-description: Keep a note, an idea or a decision in trace, or upload a file with a summary note, and share documents with a project's guests. Use when the user says "note that…", "we decided…", "keep this", "save this doc/file", "share this with the client", or hands over meeting notes, a decision or a file path to store against a project, initiative or item.
+description: Keep a note, an idea or a decision in trace, or upload a file with a summary note, and share documents or folders with a project's guests. Use when the user says "note that…", "we decided…", "keep this", "save this doc/file", "share this with the client", or hands over meeting notes, a decision or a file path to store against a project, initiative or item.
 argument-hint: <text or file path>
 ---
 
@@ -23,6 +23,6 @@ Input: $ARGUMENTS (text, a decision, or a local file path).
    - image inside a body → upload it as above (`file` `save` attached where the document is; unattached only for a floating idea or report), then write `![alt](file:<id>)` in a Markdown `body` or `<img src="file:<id>" alt="…">` in HTML. Never paste a download URL: it expires in 5 minutes, the `file:` ref resolves on every read. PNG, JPEG, GIF and WebP render.
 5. Reply with title and `url`.
 
-**Sharing with the client** ("share the API decision with the client", "unshare that note"): find the document (`documents_search`), then `project_get` for its project's guests. Show one line — title, and who'll see it (guest names), or "no guests yet" — and on OK `document_save` with `id`, `version`, `share: true` (or `false`). Any kind in a project, reports included; guests read the current version only, never drafts, history or what it's attached to. Uploaded files can't be shared; images inside the body show.
+**Sharing with the client** ("share the API decision with the client", "unshare that note"): find the document (`documents_search`), then `project_get` for its project's guests. Show one line — title, and who'll see it (guest names), or "no guests yet" — and on OK `document_save` with `id`, `version`, `share: true` (or `false`). Any kind in a project, reports included; guests read the current version only, never drafts, history or what it's attached to. A whole folder ("share the specs folder"): `folder` `list` for the project, then on OK `folder` `share` with its `id`, `version`, `share: true`; every published document and file in and below it shows, files at their current revision. A single file can't be shared on its own: put it in a shared folder. Images inside a shared body show.
 
 Rules: published unless the user says "draft". Keep the user's wording for decisions; summarise only notes you were asked to summarise.
